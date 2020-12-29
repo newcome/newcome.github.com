@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kafka on newcome`s blog</title>
+    <link>https://newcomn.com/tags/kafka/</link>
+    <description>Recent content in kafka on newcome`s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 12 Nov 2020 17:27:00 +0800</lastBuildDate><atom:link href="https://newcomn.com/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kafka</title>
+      <link>https://newcomn.com/post/bigdata/kafka/</link>
+      <pubDate>Thu, 12 Nov 2020 17:27:00 +0800</pubDate>
+      
+      <guid>https://newcomn.com/post/bigdata/kafka/</guid>
+      <description>kafka简介 基本概念 Producer:消息和数据的生产者,向kafka的一个topic发布消息的进程/代码/服务. Consumer:消息和</description>
+    </item>
+    
+  </channel>
+</rss>

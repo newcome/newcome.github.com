@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>clickhouse简介与数据库对比 - newcome`s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="newcome" /><meta name="description" content="ClickHouse是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS). 我们先来了解一下OLTP和OLAP的区别. OLTP 和 OLAP OLTP online transaction processing" /><meta name="keywords" content="java, sql, leetcode, Big Data, newcome, liukang, blog, linux, 刘康, 博客, 开发, 大数据, dmp, 用户画像, 用户分群, 高等数学, 广告, 容器" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.2 with theme even" />
+
+
+<link rel="canonical" href="https://newcomn.com/post/database/clickhousecompare/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="clickhouse简介与数据库对比" />
+<meta property="og:description" content="ClickHouse是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS). 我们先来了解一下OLTP和OLAP的区别. OLTP 和 OLAP OLTP online transaction processing" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://newcomn.com/post/database/clickhousecompare/" />
+<meta property="article:published_time" content="2020-12-29T15:59:00+08:00" />
+<meta property="article:modified_time" content="2020-12-29T15:59:00+08:00" />
+<meta itemprop="name" content="clickhouse简介与数据库对比">
+<meta itemprop="description" content="ClickHouse是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS). 我们先来了解一下OLTP和OLAP的区别. OLTP 和 OLAP OLTP online transaction processing">
+<meta itemprop="datePublished" content="2020-12-29T15:59:00+08:00" />
+<meta itemprop="dateModified" content="2020-12-29T15:59:00+08:00" />
+<meta itemprop="wordCount" content="2734">
+
+
+
+<meta itemprop="keywords" content="database,bigdata,ClickHouse,Elasticsearch,Hbase,MongoDB,Kudu,TiDB," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="clickhouse简介与数据库对比"/>
+<meta name="twitter:description" content="ClickHouse是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS). 我们先来了解一下OLTP和OLAP的区别. OLTP 和 OLAP OLTP online transaction processing"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">newcome`s blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">newcome`s blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">clickhouse简介与数据库对比</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-12-29 </span>
+        <div class="post-category">
+            <a href="/categories/database/"> database </a>
+            <a href="/categories/bigdata/"> bigdata </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#oltp-和-olap">OLTP 和 OLAP</a>
+      <ul>
+        <li><a href="#oltp">OLTP</a></li>
+        <li><a href="#olap">OLAP</a></li>
+      </ul>
+    </li>
+    <li><a href="#clickhouse使用场景">Clickhouse使用场景</a></li>
+    <li><a href="#与elasticsearchhbasekudutidb比较">与Elasticsearch/Hbase/Kudu/TiDB比较</a>
+      <ul>
+        <li><a href="#elasticsearch">Elasticsearch</a></li>
+        <li><a href="#hbase">HBASE</a></li>
+        <li><a href="#kudu">Kudu</a></li>
+        <li><a href="#tidb">TiDB</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><code>ClickHouse</code>是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS).</p>
+<p><img src="/img/database/clickhouse/1.png" alt="clickhouse在大数据平台中的位置"></p>
+<p>我们先来了解一下<code>OLTP</code>和<code>OLAP</code>的区别.</p>
+<h2 id="oltp-和-olap">OLTP 和 OLAP</h2>
+<ul>
+<li><code>OLTP</code> online transaction processing</li>
+<li><code>OLAP</code> online analytic processing</li>
+</ul>
+<h3 id="oltp">OLTP</h3>
+<p>数据库最早用于商业数据处理,那时写入操作常常对应一个商业交易（commercial transaction)
+交易处理要求低延迟的读写,且每次只处理全部记录中的一小部分,通常根据某些键来过滤需要的数据,例如根据用户<code>id</code>之类的.
+交易系统需要根据用户输入插入、更新记录,因为有 insert/update/read,所以整个系统是交互式的,因此这种访问模式被称为online transaction processing,即 <code>OLTP</code>.
+虽然后来数据库使用场景越来越广泛,不再局限于金融应用,但<code>OLTP</code>的访问模式却与以前非常类似.</p>
+<h3 id="olap">OLAP</h3>
+<p>随着应用越来越复杂,公司内部会有数据分析的需求,数据分析的访问模式与<code>OLTP</code>差别很大,每次需要加载大量记录进内存(且常常仅需要每条记录的少量字段),然后对它们进行统计分析,统计结果将用于公司管理或商业决策（business intelligence).
+为了与<code>OLTP</code>区别开,该访问模式被称为 online analytic processing,即<code>OLAP</code>.
+最开始大家直接在<code>OLTP</code>数据库上做分析,这样做有几个缺点:
+<code>OLAP</code>访问模式与<code>OLTP</code>差别很大,直接在<code>OLTP</code>系统上作分析并不方便,比如数据加载速度很慢；
+<code>OLTP</code>系统一般是公司的盈利应用,需要保持低延迟、高可靠性,分析操作可能导致数据库访问速度快速下降,影响用户体验；
+公司发展壮大后,会有很多<code>OLTP</code>系统,分析操作最好能在全部数据上进行,直接在<code>OLTP</code>系统上分析,局限性很大；
+后来一般用独立的适合<code>OLAP</code>的数据库进行分析操作,并通过<code>ETL</code>将数据从<code>OLTP</code>系统中加载到数据仓库(<code>datawarehouse</code>)中.</p>
+<hr>
+<hr>
+<h2 id="clickhouse使用场景">Clickhouse使用场景</h2>
+<ul>
+<li>数据需要以相当大的批次插入.Clickhouse建议最小(&gt;1000)更新,(&gt; 10000)行时并发插入性能最好.</li>
+<li>查询可以使用从数据库中提取的大量行,但只用一小部分字段.</li>
+<li>处理宽表,即每个表包含着大量的列</li>
+<li>查询相对较少(通常每台服务器每秒查询数百次或更少),并发不高</li>
+<li>对于简单的查询,允许大约50毫秒的延时.</li>
+<li>列值相当小,通常由数字和短字符串组成(例如每个URL 60个字节)</li>
+<li>处理单个查询时需要高吞吐量(每台服务器每秒可达数十亿行)</li>
+<li><em>不支持事务</em></li>
+<li><em>默认情况下,在执行聚合时,查询中间状态使用内存必须大于单个服务器上的RAM。否则,ClickHouse将会内存溢出</em></li>
+<li><em>绝大部分是查询需求而非删除或者更新,缺乏完整的UPDATE/DELETE实现</em></li>
+</ul>
+<hr>
+<hr>
+<h2 id="与elasticsearchhbasekudutidb比较">与Elasticsearch/Hbase/Kudu/TiDB比较</h2>
+<p>脱离场景谈技术架构,都是耍流氓</p>
+<h3 id="elasticsearch">Elasticsearch</h3>
+<p>es的底层存储使用lucene,主要包含行存储(storefiled),列存储(docvalues)和倒排索引(invertindex)</p>
+<p>因为 Elasticsearch 和 ClickHouse使用场景重叠,会进行详细对比</p>
+<ul>
+<li><code>ClickHouse</code> 写入吞吐量大,单服务器日志写入量在 50MB 到 200MB/s,每秒写入超过 60w 记录数,是<code>Elasticsearch</code>的5倍以上.</li>
+<li>官方宣称数据在<code>pagecache</code>中,单服务器查询速率大约在2-30GB/s;没在<code>pagecache</code>的情况下,查询速度取决于磁盘的读取速率和数据的压缩率.经测试<code>ClickHouse</code>的查询速度比<code>Elasticsearch</code>快 5-30 倍以上.</li>
+<li><code>Elasticsearch</code> 中一个大查询可能导致<code>OOM</code>的问题;<code>ClickHouse</code>通过预设的查询限制,会查询失败,不影响整体的稳定性.</li>
+<li>数据压缩比比<code>Elasticsearch</code>高,相同数据占用的磁盘空间只有<code>Elasticsearch</code>的 1/3 到 1/30,节省了磁盘空间的同时,也能有效的减少磁盘IO.</li>
+<li><code>ClickHouse</code> 比 <code>Elasticsearch</code>占用更少的内存,消耗更少的CPU资源.</li>
+<li><code>Elasticsearch</code> 中不同的<code>Group</code>负载不均衡,有的<code>Group</code>负载高,会导致写<code>Rejected</code>等问题,需要人工迁移索引;在<code>ClickHouse</code>中通过集群和<code>Shard</code>策略,采用轮询写的方法,可以让数据比较均衡的分布到所有节点.</li>
+<li><code>Elasticsearch</code>在计算去重总量(eg:计算<code>UV</code>),数据需要做精确去重的场景下,它的耗时比较大.</li>
+<li><code>ClickHouse</code>采用<code>SQL</code>语法,比<code>Elasticsearch</code>官方的<code>DSL</code>学习更简单,学习成本也低于社区提供的<code>Elasticsearch SQL</code>.</li>
+<li><code>ClickHouse</code>可以做多表<code>JOIN</code>,<code>Elasticsearch</code>不可以.</li>
+<li></li>
+<li><code>ClickHouse</code>虽然查询速度快,但无法承受高并发;相反,<code>Elasticsearch</code>cpu消耗到60%对查询性能不会有太大的影响,适合在线服务.</li>
+<li><code>Elasticsearch</code>支持全文索引,更适合关键字搜索,</li>
+<li><code>ELK Stack</code>入门门槛够低,太方便了…</li>
+</ul>
+<hr>
+<h3 id="hbase">HBASE</h3>
+<p><code>HBase</code>是运行在<code>HDFS</code>之上的列簇数据库(column-family database),但是不属于列式数据库(column-oriented database).</p>
+<p>假设我们有一张<code>HBase</code>表
+<img src="/img/database/clickhouse/2.png" alt="HBase"></p>
+<p>那么,<code>HBase</code>底层的KV存储大概如下所示的:
+<img src="/img/database/clickhouse/3.png" alt="HBase底层存储"></p>
+<p>从上图可以看出</p>
+<ul>
+<li>
+<p>不同的列簇存在不同的文件中</p>
+</li>
+<li>
+<p>整个数据是按照<code>Rowkey</code>进行字典排序的</p>
+</li>
+<li>
+<p>每一列数据在底层<code>HFile</code>中是以 KV 形式存储的</p>
+</li>
+<li>
+<p><code>HBase</code>以列式存储的格式在磁盘上存储数据,但是在相同的一行数据中,如果列族一样,这些数据是顺序放在一起的,也不等同于传统列式数据库</p>
+</li>
+<li>
+<p>访问HBase数据只能基于<code>Rowkey</code>，<code>Rowkey</code>设计的好坏直接决定了HBase使用优劣.</p>
+</li>
+<li>
+<p>本身不支持二级索引,若要实现,则需要引入第三方.</p>
+</li>
+<li></li>
+<li>
+<p>因为<code>HBase</code>列的可以动态增加,并且列为空就不存储数据,节省存储空间.</p>
+</li>
+</ul>
+<hr>
+<h3 id="kudu">Kudu</h3>
+<p><code>Kudu</code>是由Cloudera带头开发出存储系统,整体应用模式与<code>HBase</code>很相似,也就是能够支持行级别的随机读写,对于批量顺序检索功能也能支持.</p>
+<ul>
+<li><code>Kudu</code>的适用场景非常苛刻，必须走主键，否则，scan非主键列带来的是高CPU,<code>ClickHouse</code>影响会小很多.</li>
+<li><code>Kudu</code>是牺牲了写性能而提高读性能，主要体现在主键，所以在批量更新的时候会有大量的读.</li>
+<li></li>
+<li>优化后能够接近于<code>ClickHouse</code>的查询速度.</li>
+<li>可以支持<code>update</code>和<code>upsert</code>操作.</li>
+<li>可与<code>spark</code>系统集成</li>
+</ul>
+<hr>
+<h3 id="tidb">TiDB</h3>
+<p><code>TiDB</code> 是一个分布式 NewSQL 数据库。它支持水平弹性扩展、ACID 事务、标准 SQL、MySQL 语法和 MySQL 协议,具有数据强一致的高可用特性,是一个不仅适合<code>OLTP</code>场景还适<code>OLAP</code>场景的混合数据库。</p>
+<ul>
+<li>TiDB发挥官方推荐居然要高IOPS(NVME SSD 盘最合适)做存储节点,成本太高&hellip;</li>
+<li>TiDB设计应用需要跑在物理机里</li>
+<li>mysql部分函数不兼容</li>
+<li></li>
+<li>优秀的横向扩展能力</li>
+<li>高可用</li>
+<li>强一致性</li>
+<li>支持ACID事务,支持二级索引,没有Java GC的痛点（TiKV是由Rust开发,Rust可以完全手动控制内存,无GC）</li>
+<li>实时和离线数据导入</li>
+<li>解决分库分表痛点</li>
+</ul>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/database/">database</a>
+          <a href="/tags/bigdata/">bigdata</a>
+          <a href="/tags/clickhouse/">ClickHouse</a>
+          <a href="/tags/elasticsearch/">Elasticsearch</a>
+          <a href="/tags/hbase/">Hbase</a>
+          <a href="/tags/mongodb/">MongoDB</a>
+          <a href="/tags/kudu/">Kudu</a>
+          <a href="/tags/tidb/">TiDB</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/bigdata/kafka/">
+            <span class="next-text nav-default">kafka</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:lkbycn1998@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/newcome" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/17946814" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://newcomn.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">newcome</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126819424-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?5824025ea24c764068e8ba8b1b12314d";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

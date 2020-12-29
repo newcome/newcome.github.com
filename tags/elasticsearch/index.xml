@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elasticsearch on newcome`s blog</title>
+    <link>https://newcomn.com/tags/elasticsearch/</link>
+    <description>Recent content in Elasticsearch on newcome`s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 29 Dec 2020 15:59:00 +0800</lastBuildDate><atom:link href="https://newcomn.com/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>clickhouse简介与数据库对比</title>
+      <link>https://newcomn.com/post/database/clickhousecompare/</link>
+      <pubDate>Tue, 29 Dec 2020 15:59:00 +0800</pubDate>
+      
+      <guid>https://newcomn.com/post/database/clickhousecompare/</guid>
+      <description>ClickHouse是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS). 我们先来了解一下OLTP和OLAP的区别. OLTP 和 OLAP OLTP online transaction processing</description>
+    </item>
+    
+  </channel>
+</rss>

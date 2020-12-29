@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bigdata on newcome`s blog</title>
+    <link>https://newcomn.com/categories/bigdata/</link>
+    <description>Recent content in bigdata on newcome`s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 29 Dec 2020 15:59:00 +0800</lastBuildDate><atom:link href="https://newcomn.com/categories/bigdata/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>clickhouse简介与数据库对比</title>
+      <link>https://newcomn.com/post/database/clickhousecompare/</link>
+      <pubDate>Tue, 29 Dec 2020 15:59:00 +0800</pubDate>
+      
+      <guid>https://newcomn.com/post/database/clickhousecompare/</guid>
+      <description>ClickHouse是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS). 我们先来了解一下OLTP和OLAP的区别. OLTP 和 OLAP OLTP online transaction processing</description>
+    </item>
+    
+    <item>
+      <title>kafka</title>
+      <link>https://newcomn.com/post/bigdata/kafka/</link>
+      <pubDate>Thu, 12 Nov 2020 17:27:00 +0800</pubDate>
+      
+      <guid>https://newcomn.com/post/bigdata/kafka/</guid>
+      <description>kafka简介 基本概念 Producer:消息和数据的生产者,向kafka的一个topic发布消息的进程/代码/服务. Consumer:消息和</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on newcome`s blog</title>
+    <link>https://newcomn.com/categories/</link>
+    <description>Recent content in Categories on newcome`s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 29 Dec 2020 15:59:00 +0800</lastBuildDate><atom:link href="https://newcomn.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>bigdata</title>
+      <link>https://newcomn.com/categories/bigdata/</link>
+      <pubDate>Tue, 29 Dec 2020 15:59:00 +0800</pubDate>
+      
+      <guid>https://newcomn.com/categories/bigdata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>database</title>
+      <link>https://newcomn.com/categories/database/</link>
+      <pubDate>Tue, 29 Dec 2020 15:59:00 +0800</pubDate>
+      
+      <guid>https://newcomn.com/categories/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spring</title>
+      <link>https://newcomn.com/categories/spring/</link>
+      <pubDate>Tue, 27 Oct 2020 16:47:00 +0800</pubDate>
+      
+      <guid>https://newcomn.com/categories/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>leetcode</title>
+      <link>https://newcomn.com/categories/leetcode/</link>
+      <pubDate>Thu, 16 Jul 2020 15:00:00 +0800</pubDate>
+      
+      <guid>https://newcomn.com/categories/leetcode/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

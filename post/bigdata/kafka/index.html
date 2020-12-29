@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>kafka - newcome`s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="newcome" /><meta name="description" content="kafka简介 基本概念 Producer:消息和数据的生产者,向kafka的一个topic发布消息的进程/代码/服务. Consumer:消息和" /><meta name="keywords" content="java, sql, leetcode, Big Data, newcome, liukang, blog, linux, 刘康, 博客, 开发, 大数据, dmp, 用户画像, 用户分群, 高等数学, 广告, 容器" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.2 with theme even" />
+
+
+<link rel="canonical" href="https://newcomn.com/post/bigdata/kafka/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="kafka" />
+<meta property="og:description" content="kafka简介 基本概念 Producer:消息和数据的生产者,向kafka的一个topic发布消息的进程/代码/服务. Consumer:消息和" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://newcomn.com/post/bigdata/kafka/" />
+<meta property="article:published_time" content="2020-11-12T17:27:00+08:00" />
+<meta property="article:modified_time" content="2020-11-12T17:27:00+08:00" />
+<meta itemprop="name" content="kafka">
+<meta itemprop="description" content="kafka简介 基本概念 Producer:消息和数据的生产者,向kafka的一个topic发布消息的进程/代码/服务. Consumer:消息和">
+<meta itemprop="datePublished" content="2020-11-12T17:27:00+08:00" />
+<meta itemprop="dateModified" content="2020-11-12T17:27:00+08:00" />
+<meta itemprop="wordCount" content="1659">
+
+
+
+<meta itemprop="keywords" content="kafka,bigdata," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="kafka"/>
+<meta name="twitter:description" content="kafka简介 基本概念 Producer:消息和数据的生产者,向kafka的一个topic发布消息的进程/代码/服务. Consumer:消息和"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">newcome`s blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">newcome`s blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">kafka</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-12 </span>
+        <div class="post-category">
+            <a href="/categories/bigdata/"> bigdata </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#kafka简介">kafka简介</a>
+      <ul>
+        <li><a href="#基本概念">基本概念</a></li>
+        <li><a href="#replication特点">Replication特点</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka结构">kafka结构</a>
+      <ul>
+        <li><a href="#基本结构">基本结构</a></li>
+        <li><a href="#消息结构">消息结构</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka特点">kafka特点</a>
+      <ul>
+        <li><a href="#分布式">分布式</a></li>
+        <li><a href="#高性能">高性能</a></li>
+        <li><a href="#持久性和扩展性">持久性和扩展性</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka应用场景">kafka应用场景</a></li>
+    <li><a href="#kafka消息事物">kafka消息事物</a>
+      <ul>
+        <li><a href="#数据传输的事物定义">数据传输的事物定义</a></li>
+        <li><a href="#事物保证">事物保证</a></li>
+        <li><a href="#kafka零拷贝">kafka零拷贝</a></li>
+        <li><a href="#文件传输到网络的公共数据路径">文件传输到网络的公共数据路径</a></li>
+        <li><a href="#零拷贝">零拷贝</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="kafka简介">kafka简介</h2>
+<h3 id="基本概念">基本概念</h3>
+<ul>
+<li>Producer:消息和数据的生产者,向kafka的一个topic发布消息的进程/代码/服务.</li>
+<li>Consumer:消息和数据的消费者,订阅数据(Topic)并且处理其发布的消息的进程/代码/服务.</li>
+<li>Consumer Group(逻辑概念):逻辑概念,对于同一个topic,会广播给不同的group,一个group中.只有一个consumer可以消费该消息.消费者的数目必须少于或等于Partition的数目,一个消费者只能同时消费一个Partition</li>
+<li>Broker(物理概念):kafka集群中的每个kafka节点.</li>
+<li>Broker Group(逻辑概念):Broker Group中每一个Broker保存Topic的一个或多个Partition.</li>
+<li>Topic(逻辑概念):kafka消息的类别,对数据进行区分/隔离.</li>
+<li>Partition(物理概念):kafka下数据存储的基本单元.一个Topic数据,会被分散存储到多个Partition,每一个Partition是有序的.</li>
+<li>Replication(物理概念) :同一个Partition可能会有多个Replication,多个Replication之间数据是一样的.</li>
+<li>Replication Leader(物理概念):一个Partition的多个Replication上,需要一个Leader负责该Partition上与Producer与Consumer交互.</li>
+<li>ReplicaManager(逻辑概念):负责管理当前broker所有分区和副本的信息,处理KafkaController发起的一些请求,副本状态的切换,添加/读取消息等.</li>
+</ul>
+<h3 id="replication特点">Replication特点</h3>
+<ul>
+<li>Replication的基本单位是Topic的Partition</li>
+<li>所有的读和写都是从Leader进,Follower只是做为备份</li>
+<li>Follower必须能够及时复制Leader的数据</li>
+<li>具有容错性和可扩展性</li>
+</ul>
+<h2 id="kafka结构">kafka结构</h2>
+<h3 id="基本结构">基本结构</h3>
+<p><img src="/img/bigdata/kafka/1.png" alt="kafka基本结构"></p>
+<p>kafka强依赖与zookeeper,下面数据都会存储在zookeeper里</p>
+<ol>
+<li>broker信息</li>
+<li>topic和partition的分布</li>
+</ol>
+<h3 id="消息结构">消息结构</h3>
+<p><img src="/img/bigdata/kafka/2.png" alt="kafka消息结构"></p>
+<ol>
+<li>Offset 偏移量</li>
+<li>Length 长度</li>
+<li>CRC32 校验字段</li>
+<li>Magic kafka判定是不是kafka消息</li>
+<li>attributes 消息属性</li>
+<li>Timestamp 消息时间戳</li>
+<li>key Length</li>
+<li>key</li>
+<li>Value Length</li>
+<li>Value</li>
+</ol>
+<h2 id="kafka特点">kafka特点</h2>
+<h3 id="分布式">分布式</h3>
+<ul>
+<li>多分区</li>
+<li>多副本</li>
+<li>多订阅者</li>
+<li>基于zookeeper调度</li>
+</ul>
+<h3 id="高性能">高性能</h3>
+<ul>
+<li>高吞吐量</li>
+<li>低延迟</li>
+<li>高并发</li>
+<li>时间复杂度O(1)</li>
+</ul>
+<h3 id="持久性和扩展性">持久性和扩展性</h3>
+<ul>
+<li>数据可持久化</li>
+<li>容错性</li>
+<li>支持在线水平扩展</li>
+<li>消息自动平衡(1,服务端分片平衡 2.客户端访问平衡)</li>
+</ul>
+<h2 id="kafka应用场景">kafka应用场景</h2>
+<ul>
+<li>消息队列</li>
+<li>行为跟踪</li>
+<li>元信息监控</li>
+<li>日志收集</li>
+<li>流处理</li>
+<li>事件源</li>
+<li>持久性日志(commit log)</li>
+</ul>
+<h2 id="kafka消息事物">kafka消息事物</h2>
+<h3 id="数据传输的事物定义">数据传输的事物定义</h3>
+<ul>
+<li>最多一次: 消息不会被重复发送,最多被传输一次,但也有有可能一次不传书</li>
+<li>最少一次:消息不会被漏发送,最少别传输一次,但也有可能被重复传输</li>
+<li>精确一次</li>
+</ul>
+<h3 id="事物保证">事物保证</h3>
+<ul>
+<li>内部重试问题:Procedure幂等处理</li>
+<li>多分区原子写入(深入)</li>
+<li>避免僵尸实例</li>
+</ul>
+<ol>
+<li>每次事物Producer分配一个transactional.id,在进程重新启动时能够识别相同的Producer实例.</li>
+<li>kafka增加了一个与transactional.id的epoch,存储每个transactional.id的内部元数据.</li>
+<li>一旦epoch被触发,任何具有相同的transactional.id和更旧的epoch的producer被视为僵尸,kafka会拒绝来自这些procedure的后续事物性写入.</li>
+</ol>
+<h3 id="kafka零拷贝">kafka零拷贝</h3>
+<ul>
+<li>网络传输持久性日志块</li>
+<li>使用 java nio channel.transforTo()方法 ,底层使用linux sendfile 方法</li>
+</ul>
+<h3 id="文件传输到网络的公共数据路径">文件传输到网络的公共数据路径</h3>
+<ul>
+<li>操作系统将数据从磁盘读入到内核空间的页缓存.</li>
+<li>应用程序将数据从内核空间读入到用户空间缓存中.</li>
+<li>应用程序将数据写回到内核空间到socket缓存里.</li>
+<li>操作系统将数据从socket缓存区复制到网卡缓冲区,以便将数据经网络发出.</li>
+</ul>
+<h3 id="零拷贝">零拷贝</h3>
+<ul>
+<li>操作系统将数据从磁盘读入到内核空间的页缓存.</li>
+<li>将数据的位置和长度的信息的描述符增加至内核空间(socket缓冲区)</li>
+<li>操作系统将数据从内核拷贝到网卡缓冲区,以便将数据经网络发出</li>
+</ul>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/kafka/">kafka</a>
+          <a href="/tags/bigdata/">bigdata</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/database/clickhousecompare/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">clickhouse简介与数据库对比</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/spring/rely/">
+            <span class="next-text nav-default">spring的循环依赖</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:lkbycn1998@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/newcome" class="iconfont icon-github" title="github"></a>
+      <a href="https://space.bilibili.com/17946814" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://newcomn.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">newcome</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126819424-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?5824025ea24c764068e8ba8b1b12314d";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

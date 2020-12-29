@@ -1,0 +1,221 @@
+<?xml-stylesheet type="text/xsl" href="https://newcomn.com/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://newcomn.com/about/</loc>
+    <lastmod>2020-07-12T23:42:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/bigdata/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/categories/bigdata/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/categories/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/clickhouse/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/post/database/clickhousecompare/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/database/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/categories/database/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/elasticsearch/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/hbase/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/kudu/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/mongodb/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/post/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/tidb/</loc>
+    <lastmod>2020-12-29T15:59:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/kafka/</loc>
+    <lastmod>2020-11-12T17:27:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/post/bigdata/kafka/</loc>
+    <lastmod>2020-11-12T17:27:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/spring/</loc>
+    <lastmod>2020-10-27T16:47:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/categories/spring/</loc>
+    <lastmod>2020-10-27T16:47:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/post/spring/rely/</loc>
+    <lastmod>2020-10-27T16:47:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/leetcode/</loc>
+    <lastmod>2020-07-16T15:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/categories/leetcode/</loc>
+    <lastmod>2020-07-16T15:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/post/leetcode/leetcode-06/</loc>
+    <lastmod>2020-07-16T15:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/post/leetcode/leetcode-05/</loc>
+    <lastmod>2020-07-15T11:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/%E4%B8%AD%E5%BF%83%E6%89%A9%E6%95%A3/</loc>
+    <lastmod>2020-07-15T11:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
+    <lastmod>2020-07-15T11:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/post/leetcode/leetcode-04/</loc>
+    <lastmod>2020-07-14T11:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/%E7%AC%ACk%E5%A4%A7%E7%9A%84%E6%95%B0/</loc>
+    <lastmod>2020-07-14T11:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/post/leetcode/leetcode-03/</loc>
+    <lastmod>2020-07-13T11:04:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://newcomn.com/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/</loc>
+    <lastmod>2020-07-13T11:04:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
